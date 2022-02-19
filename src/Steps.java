@@ -1,4 +1,5 @@
 import javax.management.ConstructorParameters;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Steps {
@@ -89,6 +90,7 @@ public class Steps {
         Cube c = new Cube();
 //        solveCenter(t, c);
         solveEdges(t,c);
+        c.addStep(" Finished Edges ");
         solveCorners(t,c);
         return c.toString();
     }
@@ -97,33 +99,50 @@ public class Steps {
         return "";
     }
 
+
     public static void moveEdgeDown(Cube c, int x, int y, int z){
         if(y == 1){
             if(x == -1){
                 c.l2();
+                c.d();
+                c.l2();
             }
             else if(x == 1){
+                c.r2();
+                c.d();
                 c.r2();
             }
             else if(z == -1){
                 c.f2();
+                c.d();
+                c.f2();
             }
             else if(z == 1){
+                c.b2();
+                c.d();
                 c.b2();
             }
         }
         else if(y == 0){
             if(x == -1 && z == -1){
                 c.l();
+                c.d();
+                c.lp();
             }
             else if(x == -1 && z == 1){
                 c.lp();
+                c.d();
+                c.l();
             }
             else if(z == -1 && x == 1){
                 c.rp();
+                c.d();
+                c.r();
             }
             else if(z == 1 && x == 1){
                 c.r();
+                c.d();
+                c.rp();
             }
 
         }
@@ -362,16 +381,31 @@ public class Steps {
     }
 
     public static String moveEdge(Cube t, Cube c, int i){
+        //c.addStep("Positioning " + t.getPosPiece(i).getDirColor('u') + ": ");
         int edgeID;
+        //for the edges in all x positions
         for (int x = -1; x < 2; x++) {
+            //for the edges in the lower two thirds of the cube
             for (int y = -1; y < 1; y++) {
+                //for the edges in all depths of the cube
                 for (int z = -1; z < 2; z++) {
+                    //if the piece at the current location contains the color at the target location's up position, and the piece is an edge...
                     if (c.getPiece(x, y, z).contains(t.getPosPiece(i).getDirColor('u')) && c.getPiece(x, y, z).getClass() == Edge.class) {
+                        //assign edgeID to the index of the piece in pieces
                         edgeID = java.util.Arrays.asList(c.getPieces()).indexOf(c.getPiece(x, y, z));
+                        //move the edge down
                         moveEdgeDown(c, x, y, z);
+                        //now the edge is in the bottom layer,
+                        //while the pieces x or y position is wrong, move the bottom layer
+                        System.out.println("Piece with " + t.getPosPiece(i).getDirColor('u') + " pointing " + c.getPiece(edgeID).getColorDir(t.getPosPiece(i).getDirColor('u')) + " at position: " + c.getPiece(edgeID).getX() + ", " + c.getPiece(edgeID).getY());
                         while(c.getPiece(edgeID).getX() != t.getPosPiece(i).getX() || c.getPiece(edgeID).getZ() != t.getPosPiece(i).getZ()){
+                            //c.addStep("moving piece on bottom ");
+
                             c.d();
+                            System.out.println(t.getPosPiece(i).getDirColor('u') + " pointing " + c.getPiece(edgeID).getColorDir(t.getPosPiece(i).getDirColor('u')) + " at position: " + c.getPiece(edgeID).getX() + ", " + c.getPiece(edgeID).getY());
                         }
+                        System.out.println("Piece arrived at target location");
+                        //now move the piece up
                         moveEdgeFinal(c, t, edgeID, i, t.getPosPiece(i).getDirColor('u'));
                         return "";
                     }

@@ -115,8 +115,8 @@ public class Edge extends Piece{
                 setX(1);
             }
         }
-        faces[0].d();
-        faces[1].d();
+        faces[0].e();
+        faces[1].e();
     }
     public void l(){
         if(getY() == 1){
@@ -178,6 +178,8 @@ public class Edge extends Piece{
             setX(1);
             setY(0);
         }
+        faces[0].b();
+        faces[1].b();
     }
     public boolean contains(String c){
         if(faces[0].getColor().equals(c) || faces[1].getColor().equals(c)){

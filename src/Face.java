@@ -87,6 +87,20 @@ public class Face {
             dir = 'l';
         }
     }
+    public void e(){
+        if(dir == 'l'){
+            dir = 'f';
+        }
+        else if(dir == 'f'){
+            dir = 'r';
+        }
+        else if(dir == 'r'){
+            dir = 'b';
+        }
+        else if(dir == 'b'){
+            dir = 'l';
+        }
+    }
     public void f(){
         if(dir == 'u'){
             dir = 'r';

@@ -427,6 +427,8 @@ public class Cube {
         }
         return "Moves so far: " + steps + ". " + result;
     }
-
+    public void addStep(String step){
+        steps = steps + step;
+    }
 
 }
