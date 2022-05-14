@@ -75,6 +75,36 @@ public class Cube {
             pieces[19] = new Edge(Color.red, Color.yellow, 'f', 'd',  25);
         }
     }
+    public Cube(Color[][] colorMatrix){
+        //Custom Final Cube
+        pieces = new Piece[26];
+        pieces[0] = new Corner(Color.green, Color.orange, colorMatrix[0][0], 'l', 'b', 'u', 0);
+        pieces[1] = new Corner(Color.orange, Color.blue, colorMatrix[0][2], 'b', 'r', 'u', 2);
+        pieces[2] = new Corner(Color.green, Color.red, colorMatrix[2][0], 'l', 'f', 'u', 6);
+        pieces[3] = new Corner(Color.red, Color.blue, colorMatrix[2][2], 'f', 'r', 'u', 8);
+        pieces[4] = new Corner(Color.green, Color.orange, Color.yellow, 'l', 'b', 'd', 18);
+        pieces[5] = new Corner(Color.orange, Color.blue, Color.yellow, 'b', 'r', 'd', 20);
+        pieces[6] = new Corner(Color.green, Color.red, Color.yellow, 'l', 'f', 'd', 24);
+        pieces[7] = new Corner(Color.red, Color.blue, Color.yellow, 'f', 'r', 'd', 26);
+        pieces[20] = new Center(Color.red, 'f', 16);
+        pieces[21] = new Center(Color.blue, 'r', 14);
+        pieces[22] = new Center(colorMatrix[1][1], 'u', 4);
+        pieces[23] = new Center(Color.green, 'l', 12);
+        pieces[24] = new Center(Color.orange, 'b', 10);
+        pieces[25] = new Center(Color.yellow, 'd', 22);
+        pieces[8] = new Edge(Color.blue, colorMatrix[0][1],'b', 'u', 1);
+        pieces[9] = new Edge(Color.green, colorMatrix[1][0],'l', 'u', 3);
+        pieces[10] = new Edge(Color.blue, colorMatrix[1][2], 'r', 'u', 5);
+        pieces[11] = new Edge(Color.red, colorMatrix[2][1], 'f', 'u', 7);
+        pieces[12] = new Edge(Color.green, Color.orange, 'l', 'b', 9);
+        pieces[13] = new Edge(Color.orange, Color.blue, 'b', 'r', 11);
+        pieces[14] = new Edge(Color.green, Color.red, 'l', 'f', 15);
+        pieces[15] = new Edge(Color.blue, Color.red, 'r', 'f',  17);
+        pieces[16] = new Edge(Color.orange, Color.yellow, 'b', 'd',  19);
+        pieces[17] = new Edge(Color.green, Color.yellow, 'l', 'd', 21);
+        pieces[18] = new Edge(Color.blue, Color.yellow, 'r', 'd',  23);
+        pieces[19] = new Edge(Color.red, Color.yellow, 'f', 'd',  25);
+    }
     public Piece getPiece(int i){
         return pieces[i];
 
@@ -420,15 +450,18 @@ public class Cube {
 
 
     public String toString(){
-        System.out.println("Moves so far: " + steps);
+//        System.out.println("Moves so far: " + steps);
         String result = "";
         for(int i = 0; i < pieces.length; i++){
             result += pieces[i].toString();
         }
-        return "Moves so far: " + steps + ". " + result;
+        return "Moves so far: " + steps;
     }
     public void addStep(String step){
         steps = steps + step;
+    }
+    public void clearSteps(){
+        steps = "";
     }
 
 }

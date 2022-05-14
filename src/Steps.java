@@ -88,9 +88,11 @@ public class Steps {
 
     public static String solve(Cube t){
         Cube c = new Cube();
-//        solveCenter(t, c);
+        c.addStep("\nCenter: ");
+        solveCenter(t, c);;
+        c.addStep("\nEdges: ");
         solveEdges(t,c);
-        c.addStep(" Finished Edges ");
+        c.addStep("\nCorners:");
         solveCorners(t,c);
         return c.toString();
     }
@@ -185,16 +187,19 @@ public class Steps {
         }
     }
 
-//    public static String solveCenter(Cube t, Cube c){
-//        if(!t.getPosPiece(4).getColor().equals("White") && !t.getPosPiece(4).getColor().equals("Yellow")){
-//            while(!(c.getPiece(0,0, -1).contains(t.getPosPiece(4).getColor()))){
-//                c.e();
-//            }
-//            c.mp();
-//        }
-//        return c.toString();
-//    }
-
+    public static String solveCenter(Cube t, Cube c){
+        if(!t.getPosPiece(4).getColor().equals("White") && !t.getPosPiece(4).getColor().equals("Yellow")){
+            while(!(c.getPiece(0,0, -1).contains(t.getPosPiece(4).getColor()))){
+                c.e();
+            }
+            c.mp();
+        }
+        else if(t.getPosPiece(4).getColor().equals("Yellow")){
+            c.mp();
+            c.mp();
+        }
+        return c.toString();
+    }
     /**
      * Moves corner into target spot
      * @param t target cube - stores all info for final configuration of corners
@@ -397,14 +402,14 @@ public class Steps {
                         moveEdgeDown(c, x, y, z);
                         //now the edge is in the bottom layer,
                         //while the pieces x or y position is wrong, move the bottom layer
-                        System.out.println("Piece with " + t.getPosPiece(i).getDirColor('u') + " pointing " + c.getPiece(edgeID).getColorDir(t.getPosPiece(i).getDirColor('u')) + " at position: " + c.getPiece(edgeID).getX() + ", " + c.getPiece(edgeID).getY());
+//                        System.out.println("Piece with " + t.getPosPiece(i).getDirColor('u') + " pointing " + c.getPiece(edgeID).getColorDir(t.getPosPiece(i).getDirColor('u')) + " at position: " + c.getPiece(edgeID).getX() + ", " + c.getPiece(edgeID).getY());
                         while(c.getPiece(edgeID).getX() != t.getPosPiece(i).getX() || c.getPiece(edgeID).getZ() != t.getPosPiece(i).getZ()){
                             //c.addStep("moving piece on bottom ");
 
                             c.d();
-                            System.out.println(t.getPosPiece(i).getDirColor('u') + " pointing " + c.getPiece(edgeID).getColorDir(t.getPosPiece(i).getDirColor('u')) + " at position: " + c.getPiece(edgeID).getX() + ", " + c.getPiece(edgeID).getY());
+//                            System.out.println(t.getPosPiece(i).getDirColor('u') + " pointing " + c.getPiece(edgeID).getColorDir(t.getPosPiece(i).getDirColor('u')) + " at position: " + c.getPiece(edgeID).getX() + ", " + c.getPiece(edgeID).getY());
                         }
-                        System.out.println("Piece arrived at target location");
+//                        System.out.println("Piece arrived at target location");
                         //now move the piece up
                         moveEdgeFinal(c, t, edgeID, i, t.getPosPiece(i).getDirColor('u'));
                         return "";
