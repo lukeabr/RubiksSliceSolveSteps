@@ -9,7 +9,7 @@ public class muralDriver {
     public static void imageToArray(String fn){
         PixelParser parser = new PixelParser();
         parser.loadImage(fn);
-        colorMatrix = parser.getMatrix(15, 15);
+        colorMatrix = parser.getMatrix(300, 300);
     }
 
     public static void solveCube(Color[][] cubeMatrix){
@@ -31,6 +31,7 @@ public class muralDriver {
         System.out.println("Ready for final steps?");
         sc.nextLine();
         Steps.solveCorners(t, c);
+        System.out.println("Corner: ");
         System.out.println(c.toString());
         c.clearSteps();
     }
@@ -51,8 +52,10 @@ public class muralDriver {
 
     public static void driver(){
         Scanner sc = new Scanner(System.in);
+        System.out.println(colorMatrix);
         int numofCubes = colorMatrix.length / 3 * colorMatrix[0].length / 3;
         for (int i = 0; i < numofCubes; i++) {
+            System.out.println();
             System.out.println("Ready for cube #" + i + "? (press enter)");
             sc.nextLine();
             solveCube(getCubeArr(i));
@@ -60,7 +63,9 @@ public class muralDriver {
     }
 
     public static void main(String[] args){
-        imageToArray("broski.jpg");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter image file name: ");
+        imageToArray(sc.nextLine());
         driver();
 
 

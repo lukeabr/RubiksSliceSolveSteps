@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Rubiks:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Rubiks_jar</output-path>
+    <root id="archive" name="Rubiks.jar">
+      <element id="module-output" name="Rubiks" />
+    </root>
+  </artifact>
+</component>

@@ -455,7 +455,7 @@ public class Cube {
         for(int i = 0; i < pieces.length; i++){
             result += pieces[i].toString();
         }
-        return "Moves so far: " + steps;
+        return "Moves: " + steps;
     }
     public void addStep(String step){
         steps = steps + step;

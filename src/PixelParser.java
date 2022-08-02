@@ -18,8 +18,10 @@ public class PixelParser {
             System.out.println("Pixel Parser Created");
         }
         public void loadImage(String fn){
+            System.out.println("Load Image");
             input = new File(fn);
-            name = fn;
+            System.out.println("File Loaded");
+            name = fn.substring(0, fn.length() - 4);
         }
         public Color[][] getMatrix(int width, int height){
             try {
@@ -45,13 +47,14 @@ public class PixelParser {
                         System.out.println(newC.getRGB());
                         Color[] colors = {Color.blue, Color.red, Color.green, Color.orange, Color.yellow, Color.white};
                         outputImage.setRGB(j, i, newC.getRGB());
-                        System.out.println("S.No: " + count + " Red: " + c.getRed() +"  Green: " + c.getGreen() + " Blue: " + c.getBlue());
+                        System.out.println("S.No: " + count + " Red: " + c.getRed() +" Green: " + c.getGreen() + " Blue: " + c.getBlue());
                     }
 
                 }
                 String pathname = name + "_coded.jpg";
                 File codedImage = new File(pathname);
                 ImageIO.write(outputImage, "jpg", codedImage);
+                System.out.println("Preview saved at: (" + pathname + ")");
                 return colorArr;
             } catch (Exception e) {return null;}
 
@@ -90,8 +93,7 @@ public class PixelParser {
 
         return bi;
     }
-        static public void main(String args[]) throws Exception {
-//            PixelParser obj = new PixelParser();
-        }
+//        static public void main(String args[]) throws Exception {
+////            PixelParser obj = new PixelParser();
+//        }
 }
-

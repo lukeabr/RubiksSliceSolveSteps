@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Steps {
 
-    public static void main(String[] args){
-//        System.out.println(testTwo());
-//        fullTest();
-        Cube t = new Cube("solve");
-        System.out.println(solve(t));
-
-
-    }
+//    public static void main(String[] args){
+////        System.out.println(testTwo());
+////        fullTest();
+//        Cube t = new Cube("solve");
+//        System.out.println(solve(t));
+//
+//
+//    }
 
 
     public static void fullTest(){
@@ -372,6 +372,7 @@ public class Steps {
     public static void solveCorners(Cube t, Cube c){
         for(int i = 0; i < 9; i += 2){
              if(i != 4){
+                 if(c.getPiece(i).getColorDir("u") != t.getPiece(i).getColorDir("u"))
                  moveCorner(t, c, i);
              }
         }
