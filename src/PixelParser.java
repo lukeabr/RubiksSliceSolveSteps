@@ -19,9 +19,9 @@ public class PixelParser {
         }
         public void loadImage(String fn){
             System.out.println("Load Image");
-            input = new File(fn);
+            input = new File("./images/" + fn);
             System.out.println("File Loaded");
-            name = fn.substring(0, fn.length() - 4);
+            name = fn.substring(0, fn.indexOf('.'));
         }
         public Color[][] getMatrix(int width, int height){
             try {
@@ -43,7 +43,7 @@ public class PixelParser {
                         //g2d.drawLine(j, i, j, i);
                         Color newC = rgbToColor(c);
                         colorArr[j][i] = newC;
-                        System.out.println("New Color: " + newC);
+//                        System.out.println("New Color: " + newC);
                         System.out.println(newC.getRGB());
                         Color[] colors = {Color.blue, Color.red, Color.green, Color.orange, Color.yellow, Color.white};
                         outputImage.setRGB(j, i, newC.getRGB());
@@ -51,9 +51,10 @@ public class PixelParser {
                     }
 
                 }
-                String pathname = name + "_coded.jpg";
+
+                String pathname = name + "_coded.bmp";
                 File codedImage = new File(pathname);
-                ImageIO.write(outputImage, "jpg", codedImage);
+                ImageIO.write(outputImage, "bmp", codedImage);
                 System.out.println("Preview saved at: (" + pathname + ")");
                 return colorArr;
             } catch (Exception e) {return null;}
@@ -73,7 +74,8 @@ public class PixelParser {
                     minDist = dist;
                 }
             }
-            System.out.println(closestC.getRed() + " " + closestC.getGreen() + " " + closestC.getBlue());
+            System.out.println("to: " + closestC.getRed() + " " + closestC.getGreen() + " " + closestC.getBlue());
+//            System.out.println("closest color: " + closestC);
             return closestC;
     }
     public static BufferedImage convertToBufferedImage(Image img) {

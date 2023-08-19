@@ -9,9 +9,14 @@ public class muralDriver {
     public static void imageToArray(String fn){
         PixelParser parser = new PixelParser();
         parser.loadImage(fn);
-        colorMatrix = parser.getMatrix(300, 300);
-    }
 
+        colorMatrix = parser.getMatrix(getInt("# cubes along width: "), getInt("# cubes along height: "));
+    }
+    public static int getInt(String prompt){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(prompt);
+        return sc.nextInt();
+    }
     public static void solveCube(Color[][] cubeMatrix){
         Scanner sc = new Scanner(System.in);
         Cube t = new Cube(cubeMatrix);
@@ -56,13 +61,19 @@ public class muralDriver {
         int numofCubes = colorMatrix.length / 3 * colorMatrix[0].length / 3;
         for (int i = 0; i < numofCubes; i++) {
             System.out.println();
-            System.out.println("Ready for cube #" + i + "? (press enter)");
+            System.out.println("Ready for cube #" + i + "/" + numofCubes + "? (press enter)");
             sc.nextLine();
             solveCube(getCubeArr(i));
         }
     }
 
     public static void main(String[] args){
+        System.out.println("\n" +
+                "  ___      _    _ _         __  __               _   __  __      _           \n" +
+                " | _ \\_  _| |__(_) |__ ___ |  \\/  |_  _ _ _ __ _| | |  \\/  |__ _| |_____ _ _ \n" +
+                " |   / || | '_ \\ | / /(_-< | |\\/| | || | '_/ _` | | | |\\/| / _` | / / -_) '_|\n" +
+                " |_|_\\\\_,_|_.__/_|_\\_\\/__/ |_|  |_|\\_,_|_| \\__,_|_| |_|  |_\\__,_|_\\_\\___|_|  \n" +
+                "                                                                             \n");
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter image file name: ");
         imageToArray(sc.nextLine());
