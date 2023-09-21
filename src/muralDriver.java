@@ -39,6 +39,7 @@ public class muralDriver {
         System.out.println("Corner: ");
         System.out.println(c.toString());
         c.clearSteps();
+        System.out.println("hello world");
     }
 
     public static Color[][] getCubeArr(int cubeNum){
